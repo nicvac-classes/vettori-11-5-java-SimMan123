@@ -1,26 +1,55 @@
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
+import java.util.*;
+import java.lang.Math;
 
-//Import di Classi Java necessarie al funzionamento del programma
-import java.util.Scanner;
+class Program {
+    private static Random random = new Random();
+    private static Scanner input = new Scanner(System.in);
 
-// Classe principale, con metodo main
-class Esercizio {
-    // Il programma parte con una chiamata a main().
-    public static void main(String args[])
-    {
-        //Variabili del programma
-        String nome;
+    public static void main(String[] args) {
+        int n, i, j, coppie, lunghezza;
+        boolean t;
 
-        //Creo l'oggetto in per l'input da tastiera
-        Scanner in = new Scanner( System.in );
+        coppie = 0;
+        t = true;
+        n = input.nextInt();
+        int[] v = new int[n];
 
-        //Leggo l'input da tastiera
-        System.out.print("Inserisci il tuo nome: ");
-        nome = in.nextLine();
+        for (i = 0; i <= n - 1; i++) {
+            v[i] = random.nextInt(7) - 4;
+        }
+        for (i = 0; i <= n - 1; i++) {
+            lunghezza = lunghezza + v[i];
+        }
+        System.out.println("liunghezza di tutti i listini : " + lunghezza);
+        i = 0;
+        while (n >= 2 && t == false) {
+            while (i <= n - 1) {
+                j = i + 1;
+                while (j <= n - 2) {
+                    if (v[j] == v[i]) {
+                        coppie = coppie + 1;
+                        System.out.println("le coppie sono" + v[i] + v[j]);
+                        t = true;
+                        n = elimina(v, n, i);
+                        n = elimina(v, n, j);
+                        i = 0;
+                        j = 0;
+                    } else {
+                        t = false;
+                    }
+                }
+                i = i + 1;
+            }
+        }
+    }
+    
+    public static int elimina(int[] v, int n, int e) {
+        int i;
 
-        //Output del nome acquisito da tastiera
-        System.out.println("Ciao "+nome+"!");
+        for (i = e; i <= n - 1; i++) {
+            v[i] = v[i + 1];
+        }
+        
+        return n-1;
     }
 }
-
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
